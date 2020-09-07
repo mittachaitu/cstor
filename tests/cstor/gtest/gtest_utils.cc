@@ -64,11 +64,14 @@ std::string GtestUtils::getCmdPath(std::string zfsCmd) {
 	std::string cmdPath;
 	const char *srcPath = std::getenv("SRC_PATH");
 
-	if (srcPath == nullptr) {
+	if (zfsCmd == "zrepl") {
+		cmdPath = "../libcstor";
+	} else if (srcPath == nullptr) {
 		cmdPath += ".";
 	} else {
 		cmdPath = srcPath;
 	}
+
 	cmdPath += "/cmd/" + zfsCmd + "/" + zfsCmd;
 
 	return cmdPath;
